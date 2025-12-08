@@ -1,0 +1,10 @@
+services:
+  devcontainer:
+    image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
+
+    # O comando "../..:/workspaces:cached" monta a árvore de arquivos local dentro do Dev Container
+    volumes:
+      - ../..:/workspaces:cached
+
+    # O comando "sleep infinity" mantém o Container vivo até mandarmos ele parar
+    command: sleep infinity

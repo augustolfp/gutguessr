@@ -1,0 +1,21 @@
+{
+    "name": "Node.JS + PostgreSQL",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "devcontainer",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "features": {
+        // Instalação do NodeJS via Microsoft DevContainer features:
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "24"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Pacote prettier para formatação de JS
+                "esbenp.prettier-vscode"
+            ]
+        }
+    },
+    "remoteUser": "root"
+}
