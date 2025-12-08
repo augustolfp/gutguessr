@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Gutguessr backend",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx --watch src/index.ts",
+    "start": "node dist/src/index.js"
+  },
+  "author": "Augusto Lopes Falcão Pinheiro (augustolfp)",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-async-errors": "^3.1.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.1",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.18",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
