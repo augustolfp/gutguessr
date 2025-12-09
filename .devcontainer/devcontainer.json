@@ -12,8 +12,8 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                // Pacote prettier para formatação de JS
-                "esbenp.prettier-vscode"
+                "esbenp.prettier-vscode",
+                "Prisma.prisma"
             ]
         }
     },
