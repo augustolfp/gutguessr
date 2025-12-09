@@ -1,0 +1,29 @@
+{
+  // Task escrita para subir automaticamente os ambientes de desenvolvimento do Frontend e Backend
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Frontend",
+      "type": "shell",
+      "command": "cd frontend && npm run dev",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Backend",
+      "type": "shell",
+      "command": "cd backend && npm run dev",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "All",
+      "dependsOn": ["Frontend", "Backend"],
+      "problemMatcher": []
+    }
+  ]
+}
