@@ -9,6 +9,7 @@
             "version": "22"
         }
     },
+    "postCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh",
     "customizations": {
         "vscode": {
             "extensions": [
