@@ -3,6 +3,7 @@
     "dockerComposeFile": "docker-compose.yml",
     "service": "devcontainer",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "forwardPorts": ["db:5432"],
     "features": {
         // Instalação do NodeJS via Microsoft DevContainer features:
         "ghcr.io/devcontainers/features/node:1": {
