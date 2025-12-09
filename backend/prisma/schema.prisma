@@ -12,3 +12,12 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Location {
+  id      Int     @id @default(autoincrement())
+  lat     Float
+  lng     Float
+  heading Int
+  pitch   Int
+  country String?
+}
