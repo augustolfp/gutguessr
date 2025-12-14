@@ -8,12 +8,12 @@ import MapPage from "./pages/MapPage";
 export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <GoogleApiProvider>
+      <GoogleApiProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/map-example" element={<MapPage />} />
-        </GoogleApiProvider>
-      </Routes>
+        </Routes>
+      </GoogleApiProvider>
     </Router>
   );
 }
