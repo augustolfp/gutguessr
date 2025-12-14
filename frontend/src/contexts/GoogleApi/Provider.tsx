@@ -1,5 +1,5 @@
 import { GoogleApiContext } from "./context";
-import { loadStreetViewPanorama } from "./config";
+import { streetViewPanorama } from "./config";
 
 interface ProviderProps {
   children?: React.ReactNode;
