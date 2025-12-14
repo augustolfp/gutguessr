@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { setOptions, importLibrary } from "@googlemaps/js-api-loader";
 import { streetViewBaseConfig } from "../../config/googleMapsApiConfig";
+import useGoogleApiContext from "../../contexts/GoogleApi/useGoogleApiContext";
 
 setOptions({
   key: `${import.meta.env.VITE_GOOGLE_CLOUD_API_KEY}`,
@@ -31,6 +32,7 @@ await importLibrary("maps");
 await importLibrary("streetView");
 
 export default function MapPage() {
+  const { updateStreetView } = useGoogleApiContext();
   useEffect(() => {
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -58,7 +60,7 @@ export default function MapPage() {
 
       panorama.setPosition({
         lat: 35.06281288328733,
-        lng: 134.20490283181627
+        lng: 134.20490283181627,
       });
     }
 
