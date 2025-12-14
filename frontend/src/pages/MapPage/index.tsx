@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { setOptions, importLibrary } from "@googlemaps/js-api-loader";
 import { streetViewBaseConfig } from "../../config/googleMapsApiConfig";
-import useGoogleApiContext from "../../contexts/GoogleApi/useGoogleApiContext";
+import useGoogleApiContext from "../../hooks/useGoogleApiContext";
 
 setOptions({
   key: `${import.meta.env.VITE_GOOGLE_CLOUD_API_KEY}`,
