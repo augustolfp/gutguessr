@@ -5,8 +5,8 @@ setOptions({
 });
 
 const genericStartingPoint: google.maps.LatLngLiteral = {
-  lat: -13.3268339,
-  lng: -41.1476912,
+  lat: -22.41422237388817,
+  lng: -45.45034290777719,
 };
 
 const streetViewBaseConfig: google.maps.StreetViewPanoramaOptions = {
