@@ -1,7 +1,14 @@
+import { useEffect } from "react";
 import useGoogleApiContext from "../../hooks/useGoogleApiContext";
 
 export default function MapPage() {
-  const { updateStreetView } = useGoogleApiContext();
+  const { initStreetViewPanorama } = useGoogleApiContext();
+
+  useEffect(() => {
+    initStreetViewPanorama();
+  });
+
+
 
   return (
     <div className="w-full h-screen bg-pink-300 p-4">
