@@ -19,8 +19,18 @@ const streetViewBaseConfig: google.maps.StreetViewPanoramaOptions = {
   },
 };
 
+const mapBaseConfig: google.maps.MapOptions = {
+    center: genericPosition,
+    clickableIcons: false,
+    disableDefaultUI: true,
+    zoom: 3,
+    mapId: "DEMO_MAP_ID",
+    gestureHandling: "greedy",
+};
+
 export {
   genericPosition,
   genericPov,
   streetViewBaseConfig,
+  mapBaseConfig
 };

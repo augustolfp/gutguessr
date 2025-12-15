@@ -24,4 +24,13 @@ const initStreetViewPanorama = async (
   return panorama;
 };
 
-export { initStreetViewPanorama };
+const initMap = async () => {
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    defaults.mapBaseConfig
+  );
+
+  return map;
+}
+
+export { initStreetViewPanorama, initMap };

@@ -9,6 +9,7 @@ interface ProviderProps {
 export default function GoogleApiProvider({ children }: ProviderProps) {
   const [streetViewPanorama, setStreetViewPanorama] =
     useState<google.maps.StreetViewPanorama | null>(null);
+  const [map, setMap] = useState<google.maps.Map | null>(null);
 
   const initStreetViewPanorama = async () => {
     try {
@@ -34,11 +35,29 @@ export default function GoogleApiProvider({ children }: ProviderProps) {
     newConfig: google.maps.StreetViewPanoramaOptions
   ) => {
     if (!streetViewPanorama) {
-      console.log("Foi disparado um update do StreetView Panorama, porém este não está inicializado. Nenhuma ação foi executada.");
+      console.log(
+        "Foi disparado um update do StreetView Panorama, porém este não está inicializado. Nenhuma ação foi executada."
+      );
       return;
     }
 
     streetViewPanorama.setOptions(newConfig);
+  };
+
+  const initMap = async () => {
+    try {
+      if (map) {
+        console.log(
+          "Mapa já foi inicializado. Não é necessário inicializá-lo novamente."
+        );
+        return;
+      }
+
+      const newMap = await googleApiFunctions.initMap();
+      setMap(newMap);
+    } catch (error: unknown) {
+      console.log("Ocorreu um erro ao inicializar um mapa: ", error);
+    }
   };
 
   return (
@@ -46,6 +65,7 @@ export default function GoogleApiProvider({ children }: ProviderProps) {
       value={{
         initStreetViewPanorama,
         updateStreetViewPanorama,
+        initMap,
       }}
     >
       {children}

@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import useGoogleApiContext from "../../hooks/useGoogleApiContext";
 
 export default function MapPage() {
-  const { initStreetViewPanorama, updateStreetViewPanorama } =
+  const { initStreetViewPanorama, updateStreetViewPanorama, initMap } =
     useGoogleApiContext();
 
   useEffect(() => {
     initStreetViewPanorama();
+    initMap();
   });
 
   const handleButtonClick = () => {
@@ -19,11 +20,12 @@ export default function MapPage() {
   };
 
   return (
-    <div className="w-full h-screen bg-pink-300 p-4">
+    <div className="w-full h-screen p-4">
       <div id="panorama" className="w-full h-1/2" />
-      <div className="w-full h-1/4 bg-purple-600 mt-4">
-        <button onClick={handleButtonClick}>Atualizar Panorama</button>
+      <div id="map" className="w-full h-1/4 bg-purple-600 mt-4">
+        
       </div>
+      <button onClick={handleButtonClick} className="btn btn-primary">Atualizar Panorama</button>
     </div>
   );
 }
