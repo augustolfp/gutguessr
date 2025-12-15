@@ -4,10 +4,15 @@ setOptions({
   key: `${import.meta.env.VITE_GOOGLE_CLOUD_API_KEY}`,
 });
 
-const genericStartingPoint: google.maps.LatLngLiteral = {
+const genericPosition: google.maps.LatLngLiteral = {
   lat: -22.41422237388817,
   lng: -45.45034290777719,
 };
+
+const genericPov: google.maps.StreetViewPov = {
+  heading: 0,
+  pitch: 0
+}
 
 const streetViewBaseConfig: google.maps.StreetViewPanoramaOptions = {
   addressControl: false,
@@ -24,12 +29,14 @@ await importLibrary("maps");
 await importLibrary("streetView");
 
 const loadStreetViewPanorama = async (
-  position: google.maps.LatLngLiteral = genericStartingPoint
+  position: google.maps.LatLngLiteral = genericPosition,
+  pov: google.maps.StreetViewPov = genericPov
 ) => {
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("panorama") as HTMLElement,
     {
       position,
+      pov,
       ...streetViewBaseConfig,
     }
   );
