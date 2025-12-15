@@ -8,7 +8,7 @@ setOptions({
 await importLibrary("maps");
 await importLibrary("streetView");
 
-const loadStreetViewPanorama = async (
+const initStreetViewPanorama = async (
   position: google.maps.LatLngLiteral = defaults.genericPosition,
   pov: google.maps.StreetViewPov = defaults.genericPov
 ) => {
@@ -24,4 +24,4 @@ const loadStreetViewPanorama = async (
   return panorama;
 };
 
-export { loadStreetViewPanorama };
+export { initStreetViewPanorama };
