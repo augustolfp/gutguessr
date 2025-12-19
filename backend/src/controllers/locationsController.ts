@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { prisma } from "../../config/database.js";
+import * as locationsRepo from "../repositories/locationsRepository.js";
 
 export async function getRandomLocation(req: Request, res: Response) {
-    const location = await prisma.location.findFirst();
+    const location = await locationsRepo.getRandomLocation();
 
     res.status(200).json(location);
     return;
