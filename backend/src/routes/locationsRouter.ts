@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { getLocation } from "../controllers/locationsController";
+import { getRandomLocation } from "../controllers/locationsController";
 
 const locationsRouter = Router();
 
-locationsRouter.get("/location", getLocation);
+locationsRouter.get("/locations/random", getRandomLocation);
 
 export default locationsRouter;
