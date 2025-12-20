@@ -26,3 +26,17 @@ function isLocationArray(x: any): x is Location {
     }
     return false;
 }
+
+export async function getLocationById(id: number) {
+    const result = await prisma.location.findUnique({
+        where: {
+            id
+        }
+    });
+
+    if (!result) {
+        throw new ApiError("Registro não encontrado.", 404);
+    }
+
+    return result;
+}
