@@ -1,8 +1,8 @@
 import { AppContext } from "./context";
-import { api } from "../../config/axios";
 import useGoogleMapsPanorama from "../../hooks/useGoogleMapsPanorama";
 import useGoogleMapsMap from "../../hooks/useGoogleMapsMap";
-import type { Coordinate } from "../../types";
+
+import { getRandomCoordinates } from "../../config/backendClient";
 
 interface ProviderProps {
   children?: React.ReactNode;
@@ -23,11 +23,6 @@ export default function AppProvider({ children }: ProviderProps) {
   const startGame = async () => {
     await initPanorama();
     await initMap();
-  };
-
-  const getRandomCoordinates = async () => {
-    const result = await api.get<Coordinate>("/locations/random");
-    return result.data;
   };
 
   const goToNextRound = async () => {
