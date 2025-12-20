@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { GoogleApiContext } from "./context";
-import * as googleApiFunctions from "../../config/googleMapsApi";
+import "../../config/googleMapsApi/index";
+import * as panoramaFunctions from "../../config/googleMapsApi/panorama";
+import * as mapFunctions from "../../config/googleMapsApi/map";
 
 interface ProviderProps {
   children?: React.ReactNode;
@@ -20,7 +22,7 @@ export default function GoogleApiProvider({ children }: ProviderProps) {
         return;
       }
 
-      const panorama = await googleApiFunctions.initStreetViewPanorama();
+      const panorama = await panoramaFunctions.init();
       setStreetViewPanorama(panorama);
       console.log("Panorama inicializado.");
     } catch (error: unknown) {
@@ -53,7 +55,7 @@ export default function GoogleApiProvider({ children }: ProviderProps) {
         return;
       }
 
-      const newMap = await googleApiFunctions.initMap();
+      const newMap = await mapFunctions.init();
       setMap(newMap);
     } catch (error: unknown) {
       console.log("Ocorreu um erro ao inicializar um mapa: ", error);
