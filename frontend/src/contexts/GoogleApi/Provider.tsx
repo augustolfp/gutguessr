@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GoogleApiContext } from "./context";
-import * as googleApiFunctions from "./config";
+import * as googleApiFunctions from "../../config/googleMapsApi";
 
 interface ProviderProps {
   children?: React.ReactNode;
