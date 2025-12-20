@@ -1,4 +1,4 @@
-import { GoogleApiContext } from "./context";
+import { AppContext } from "./context";
 import useGoogleMapsPanorama from "../../hooks/useGoogleMapsPanorama";
 import useGoogleMapsMap from "../../hooks/useGoogleMapsMap";
 
@@ -6,7 +6,7 @@ interface ProviderProps {
   children?: React.ReactNode;
 }
 
-export default function GoogleApiProvider({ children }: ProviderProps) {
+export default function AppProvider({ children }: ProviderProps) {
   const {
     // panorama,
     init: initPanorama,
@@ -33,13 +33,13 @@ export default function GoogleApiProvider({ children }: ProviderProps) {
   };
 
   return (
-    <GoogleApiContext.Provider
+    <AppContext.Provider
       value={{
         startGame,
         goToNextRound,
       }}
     >
       {children}
-    </GoogleApiContext.Provider>
+    </AppContext.Provider>
   );
 }

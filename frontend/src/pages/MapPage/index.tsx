@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import useGoogleApiContext from "../../hooks/useGoogleApiContext";
+import useAppContext from "../../contexts/AppContext/useAppContext";
 
 export default function MapPage() {
-  const { startGame, goToNextRound } = useGoogleApiContext();
+  const { startGame, goToNextRound } = useAppContext();
 
   useEffect(() => {
     startGame();

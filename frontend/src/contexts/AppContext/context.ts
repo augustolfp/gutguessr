@@ -1,9 +1,8 @@
 import { createContext } from "react";
 
-interface GoogleApiContext {
+interface AppContext {
   startGame: () => Promise<void>;
   goToNextRound: () => void;
-
 }
 
-export const GoogleApiContext = createContext({} as GoogleApiContext);
+export const AppContext = createContext({} as AppContext);
