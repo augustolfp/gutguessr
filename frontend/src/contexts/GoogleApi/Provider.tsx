@@ -10,7 +10,7 @@ export default function GoogleApiProvider({ children }: ProviderProps) {
   const {
     // panorama,
     init: initPanorama,
-    // update: updatePanorama,
+    update: updatePanorama,
   } = useGoogleMapsPanorama();
 
   const {
@@ -24,7 +24,12 @@ export default function GoogleApiProvider({ children }: ProviderProps) {
   };
 
   const goToNextRound = () => {
-    // updatePanorama();
+    updatePanorama({
+      position: {
+        lat: 50.60821217869535,
+        lng: 4.590171740162271,
+      },
+    });
   };
 
   return (

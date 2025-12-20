@@ -2,19 +2,14 @@ import { useEffect } from "react";
 import useGoogleApiContext from "../../hooks/useGoogleApiContext";
 
 export default function MapPage() {
-  const { startGame } = useGoogleApiContext();
+  const { startGame, goToNextRound } = useGoogleApiContext();
 
   useEffect(() => {
     startGame();
   });
 
   const handleButtonClick = () => {
-    // updateStreetViewPanorama({
-    //   position: {
-    //     lat: 50.60821217869535,
-    //     lng: 4.590171740162271,
-    //   },
-    // });
+    goToNextRound();
   };
 
   return (
