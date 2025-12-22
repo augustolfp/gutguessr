@@ -6,6 +6,7 @@ setOptions({
 
 await importLibrary("maps");
 await importLibrary("streetView");
+await importLibrary("marker");
 
 const genericPosition: google.maps.LatLngLiteral = {
   lat: -22.41422237388817,
