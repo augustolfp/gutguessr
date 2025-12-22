@@ -11,22 +11,23 @@ interface ProviderProps {
 export default function AppProvider({ children }: ProviderProps) {
   const [coordinateId, setCoordinateId] = useState<number | null>(null);
 
-  const { userMarker, render, refresh, displayResultOnMap } = useGameInterface();
+  const { userMarker, render, refresh, displayResultOnMap } =
+    useGameInterface();
 
   const startGame = async () => {
-    const randomCoordinates = await getRandomCoordinates();
+    const { lat, lng, heading, pitch, id } = await getRandomCoordinates();
     await render(
       {
-        lat: randomCoordinates.lat,
-        lng: randomCoordinates.lng,
+        lat,
+        lng,
       },
       {
-        heading: randomCoordinates.heading,
-        pitch: randomCoordinates.pitch,
+        heading,
+        pitch,
       }
     );
 
-    setCoordinateId(randomCoordinates.id);
+    setCoordinateId(id);
   };
 
   const submitGuessAndDisplayResult = async () => {
@@ -43,14 +44,9 @@ export default function AppProvider({ children }: ProviderProps) {
         ? userMarker.position.lng
         : userMarker.position.lng();
 
-    const { distanceInKm, score } = await submitGuess(
-      coordinateId,
-      lat,
-      lng
-    );
+    const { distanceInKm, score } = await submitGuess(coordinateId, lat, lng);
 
     await displayResultOnMap();
-
 
     console.log("DISTANCIA EM KM: ", distanceInKm);
     console.log("SCORE: ", score);
@@ -76,7 +72,7 @@ export default function AppProvider({ children }: ProviderProps) {
       value={{
         startGame,
         submitGuessAndDisplayResult,
-        renderNextRound
+        renderNextRound,
       }}
     >
       {children}
