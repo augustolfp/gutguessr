@@ -49,7 +49,7 @@ export default function AppProvider({ children }: ProviderProps) {
       lng
     );
 
-    updateExactMarker(exactLocation.lat, exactLocation.lng);
+    updateExactMarker(exactLocation.lat, exactLocation.lng, true);
 
     console.log("DISTANCIA EM KM: ", distanceInKm);
     console.log("SCORE: ", score);

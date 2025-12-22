@@ -28,13 +28,21 @@ export default function useGameInterface() {
     setExactMarker(newExactMarker);
   };
 
-  const updateExactMarker = (lat: number, lng: number) => {
+  const updateExactMarker = (lat: number, lng: number, isVisible: boolean) => {
     if (!exactMarker) {
-        return;
+      return;
     }
 
     markerFunctions.updatePosition(exactMarker, lat, lng);
-  }
+
+    if (isVisible) {
+      exactMarker.map = map;
+    }
+
+    if (!isVisible) {
+      exactMarker.map = null;
+    }
+  };
 
   return {
     panorama,
@@ -43,6 +51,6 @@ export default function useGameInterface() {
     exactMarker,
 
     render,
-    updateExactMarker
+    updateExactMarker,
   };
 }
