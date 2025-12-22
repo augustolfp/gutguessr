@@ -11,7 +11,7 @@ interface ProviderProps {
 export default function AppProvider({ children }: ProviderProps) {
   const [coordinateId, setCoordinateId] = useState<number | null>(null);
 
-  const { userMarker, render, refresh, updateExactMarker } = useGameInterface();
+  const { userMarker, render, refresh, displayResultOnMap } = useGameInterface();
 
   const startGame = async () => {
     const randomCoordinates = await getRandomCoordinates();
@@ -43,13 +43,14 @@ export default function AppProvider({ children }: ProviderProps) {
         ? userMarker.position.lng
         : userMarker.position.lng();
 
-    const { exactLocation, distanceInKm, score } = await submitGuess(
+    const { distanceInKm, score } = await submitGuess(
       coordinateId,
       lat,
       lng
     );
 
-    updateExactMarker(exactLocation.lat, exactLocation.lng, true);
+    await displayResultOnMap();
+
 
     console.log("DISTANCIA EM KM: ", distanceInKm);
     console.log("SCORE: ", score);

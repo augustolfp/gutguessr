@@ -20,13 +20,12 @@ const init = async (map: google.maps.Map, isInteractive: boolean) => {
 
 const updatePosition = (
   marker: google.maps.marker.AdvancedMarkerElement,
-  lat: number,
-  lng: number
+  newPosition:
+    | google.maps.LatLngLiteral
+    | google.maps.LatLng
+    | google.maps.LatLngAltitudeLiteral
 ) => {
-  marker.position = {
-    lat,
-    lng,
-  };
+  marker.position = newPosition;
 };
 
 const updateVisibility = (

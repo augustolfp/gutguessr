@@ -14,13 +14,14 @@ export default function useGameInterface() {
     useState<google.maps.marker.AdvancedMarkerElement | null>(null);
 
   const render = async (
-    position?: google.maps.LatLngLiteral,
+    position: google.maps.LatLngLiteral,
     pov?: google.maps.StreetViewPov
   ) => {
     const newPanorama = await panoramaFunctions.init(position, pov);
     const newMap = await mapFunctions.init();
     const newUserMarker = await markerFunctions.init(newMap, true);
     const newExactMarker = await markerFunctions.init(newMap, false);
+    markerFunctions.updatePosition(newExactMarker, position);
 
     setPanorama(newPanorama);
     setMap(newMap);
@@ -29,7 +30,7 @@ export default function useGameInterface() {
   };
 
   const refresh = async (
-    position?: google.maps.LatLngLiteral,
+    position: google.maps.LatLngLiteral,
     pov?: google.maps.StreetViewPov
   ) => {
     if (!panorama || !userMarker || !exactMarker || !map) {
@@ -43,10 +44,16 @@ export default function useGameInterface() {
 
     markerFunctions.updateVisibility(userMarker, map, false);
     markerFunctions.updateVisibility(exactMarker, map, false);
+    markerFunctions.updatePosition(exactMarker, position);
   };
 
   const displayResultOnMap = async () => {
-    if (!exactMarker || !map || !userMarker?.position || !exactMarker.position) {
+    if (
+      !exactMarker ||
+      !map ||
+      !userMarker?.position ||
+      !exactMarker.position
+    ) {
       return;
     }
     markerFunctions.updateVisibility(exactMarker, map, true);
@@ -56,22 +63,12 @@ export default function useGameInterface() {
       userMarker.position,
       exactMarker.position
     );
-  };
 
-  const updateExactMarker = (lat: number, lng: number, isVisible: boolean) => {
-    if (!exactMarker) {
-      return;
-    }
-
-    markerFunctions.updatePosition(exactMarker, lat, lng);
-
-    if (isVisible) {
-      exactMarker.map = map;
-    }
-
-    if (!isVisible) {
-      exactMarker.map = null;
-    }
+    await mapFunctions.adjustZoomToFitPoints(
+      map,
+      userMarker.position,
+      exactMarker.position
+    );
   };
 
   return {
@@ -82,7 +79,6 @@ export default function useGameInterface() {
 
     render,
     refresh,
-    updateExactMarker,
-    displayResultOnMap
+    displayResultOnMap,
   };
 }
