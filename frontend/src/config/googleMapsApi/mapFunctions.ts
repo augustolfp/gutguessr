@@ -9,22 +9,6 @@ const init = async () => {
   return newMap;
 };
 
-const traceDistanceLine = (
-  map: google.maps.Map,
-  positionA: google.maps.LatLngLiteral | google.maps.LatLng | google.maps.LatLngAltitudeLiteral,
-  positionB: google.maps.LatLngLiteral | google.maps.LatLng | google.maps.LatLngAltitudeLiteral
-) => {
-  const distanceLine = new google.maps.Polyline({
-    path: [positionA, positionB],
-    geodesic: true,
-    strokeColor: "#FF0000",
-    strokeOpacity: 1.0,
-    strokeWeight: 2,
-  });
-
-  distanceLine.setMap(map);
-};
-
 const adjustZoomToFitPoints = async (
   map: google.maps.Map,
   positionA: google.maps.LatLngLiteral | google.maps.LatLng | google.maps.LatLngAltitudeLiteral,
@@ -36,4 +20,4 @@ const adjustZoomToFitPoints = async (
   map.fitBounds(bounds);
 };
 
-export { init, traceDistanceLine, adjustZoomToFitPoints };
+export { init, adjustZoomToFitPoints };
