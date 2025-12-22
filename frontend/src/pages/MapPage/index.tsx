@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import useAppContext from "../../contexts/AppContext/useAppContext";
 
 export default function MapPage() {
-  const { startGame, submitGuessAndDisplayResult } =
+  const { startGame, submitGuessAndDisplayResult, renderNextRound } =
     useAppContext();
 
   useEffect(() => {
@@ -10,6 +10,7 @@ export default function MapPage() {
   }, []);
 
   const handleButtonClick = () => {
+    renderNextRound();
   };
 
   const handleSubmit = () => {

@@ -11,7 +11,7 @@ interface ProviderProps {
 export default function AppProvider({ children }: ProviderProps) {
   const [coordinateId, setCoordinateId] = useState<number | null>(null);
 
-  const { userMarker, render, updateExactMarker } = useGameInterface();
+  const { userMarker, render, refresh, updateExactMarker } = useGameInterface();
 
   const startGame = async () => {
     const randomCoordinates = await getRandomCoordinates();
@@ -55,11 +55,27 @@ export default function AppProvider({ children }: ProviderProps) {
     console.log("SCORE: ", score);
   };
 
+  const renderNextRound = async () => {
+    const { lat, lng, heading, pitch, id } = await getRandomCoordinates();
+    setCoordinateId(id);
+    await refresh(
+      {
+        lat,
+        lng,
+      },
+      {
+        heading,
+        pitch,
+      }
+    );
+  };
+
   return (
     <AppContext.Provider
       value={{
         startGame,
         submitGuessAndDisplayResult,
+        renderNextRound
       }}
     >
       {children}

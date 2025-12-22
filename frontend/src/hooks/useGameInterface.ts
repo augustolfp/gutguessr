@@ -28,6 +28,23 @@ export default function useGameInterface() {
     setExactMarker(newExactMarker);
   };
 
+  const refresh = async (
+    position?: google.maps.LatLngLiteral,
+    pov?: google.maps.StreetViewPov
+  ) => {
+    if (!panorama || !userMarker || !exactMarker || !map) {
+      return;
+    }
+
+    panoramaFunctions.update(panorama, {
+      position,
+      pov,
+    });
+
+    markerFunctions.updateVisibility(userMarker, map, false);
+    markerFunctions.updateVisibility(exactMarker, map, false);
+  };
+
   const updateExactMarker = (lat: number, lng: number, isVisible: boolean) => {
     if (!exactMarker) {
       return;
@@ -51,6 +68,7 @@ export default function useGameInterface() {
     exactMarker,
 
     render,
+    refresh,
     updateExactMarker,
   };
 }

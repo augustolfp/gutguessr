@@ -23,7 +23,24 @@ const updatePosition = (
   lat: number,
   lng: number
 ) => {
-  return (marker.position = { lat: lat, lng: lng });
+  marker.position = {
+    lat,
+    lng,
+  };
 };
 
-export { init, updatePosition };
+const updateVisibility = (
+  marker: google.maps.marker.AdvancedMarkerElement,
+  map: google.maps.Map,
+  isVisible: boolean
+) => {
+  if (isVisible) {
+    marker.map = map;
+  }
+
+  if (!isVisible) {
+    marker.map = null;
+  }
+};
+
+export { init, updatePosition, updateVisibility };
