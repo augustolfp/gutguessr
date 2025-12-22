@@ -54,6 +54,7 @@ export default function useGameInterface() {
     markerFunctions.updateVisibility(exactMarker, map, false);
     markerFunctions.updatePosition(exactMarker, position);
     polylineFunctions.updateVisibility(distanceLine, false);
+    mapFunctions.resetZoom(map);
   };
 
   const displayResultOnMap = async () => {

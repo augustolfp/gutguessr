@@ -20,4 +20,8 @@ const adjustZoomToFitPoints = async (
   map.fitBounds(bounds);
 };
 
-export { init, adjustZoomToFitPoints };
+const resetZoom = (map: google.maps.Map) => {
+  map.setZoom(3);
+}
+
+export { init, adjustZoomToFitPoints, resetZoom };
