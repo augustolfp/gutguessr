@@ -6,4 +6,27 @@ const getRandomCoordinates = async () => {
   return result.data;
 };
 
-export { getRandomCoordinates };
+interface GuessResponse {
+  exactLocation: {
+    lat: number;
+    lng: number;
+  };
+  guessedLocation: {
+    lat: number;
+    lng: number;
+  };
+  distanceInKm: number;
+  score: number;
+}
+
+const submitGuess = async (locationId: number, lat: number, lng: number) => {
+  const result = await api.post<GuessResponse>("/location/guess", {
+    locationId,
+    lat,
+    lng,
+  });
+
+  return result.data;
+};
+
+export { getRandomCoordinates, submitGuess };

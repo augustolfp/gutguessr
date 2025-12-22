@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { AppContext } from "./context";
 import useGoogleMapsPanorama from "../../hooks/useGoogleMapsPanorama";
 import useGoogleMapsMap from "../../hooks/useGoogleMapsMap";
 
-import { getRandomCoordinates } from "../../config/backendClient";
+import { getRandomCoordinates, submitGuess } from "../../config/backendClient";
 
 interface ProviderProps {
   children?: React.ReactNode;
 }
 
 export default function AppProvider({ children }: ProviderProps) {
+  const [coordinateId, setCoordinateId] = useState<number | null>(null);
   const {
     // panorama,
     init: initPanorama,
@@ -18,6 +20,7 @@ export default function AppProvider({ children }: ProviderProps) {
   const {
     // map,
     init: initMap,
+    userMarker,
   } = useGoogleMapsMap();
 
   const startGame = async () => {
@@ -25,9 +28,32 @@ export default function AppProvider({ children }: ProviderProps) {
     await initMap();
   };
 
+  const submitGuessAndDisplayResult = async () => {
+    if (!userMarker || !userMarker.position || !coordinateId) {
+      return;
+    }
+
+    const lat =
+      typeof userMarker.position.lat === "number"
+        ? userMarker.position.lat
+        : userMarker.position.lat();
+    const lng =
+      typeof userMarker.position.lng === "number"
+        ? userMarker.position.lng
+        : userMarker.position.lng();
+
+    const { distanceInKm, score } =
+      await submitGuess(coordinateId, lat, lng);
+
+    console.log("Distância: ", distanceInKm);
+    console.log("Score: ", score);
+  };
+
   const goToNextRound = async () => {
     try {
-      const { lat, lng, heading, pitch } = await getRandomCoordinates();
+      const { lat, lng, heading, pitch, id } = await getRandomCoordinates();
+      setCoordinateId(id);
+
       updatePanorama({
         position: {
           lat,
@@ -48,6 +74,7 @@ export default function AppProvider({ children }: ProviderProps) {
       value={{
         startGame,
         goToNextRound,
+        submitGuessAndDisplayResult
       }}
     >
       {children}
