@@ -2,15 +2,14 @@ import { useEffect } from "react";
 import useAppContext from "../../contexts/AppContext/useAppContext";
 
 export default function MapPage() {
-  const { startGame, goToNextRound, submitGuessAndDisplayResult } =
+  const { startGame, submitGuessAndDisplayResult } =
     useAppContext();
 
   useEffect(() => {
     startGame();
-  });
+  }, []);
 
   const handleButtonClick = () => {
-    goToNextRound();
   };
 
   const handleSubmit = () => {

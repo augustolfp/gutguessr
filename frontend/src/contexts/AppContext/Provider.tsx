@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { AppContext } from "./context";
-import useGoogleMapsPanorama from "../../hooks/useGoogleMapsPanorama";
-import useGoogleMapsMap from "../../hooks/useGoogleMapsMap";
 
 import { getRandomCoordinates, submitGuess } from "../../config/backendClient";
+import useGameInterface from "../../hooks/useGameInterface";
 
 interface ProviderProps {
   children?: React.ReactNode;
@@ -11,21 +10,23 @@ interface ProviderProps {
 
 export default function AppProvider({ children }: ProviderProps) {
   const [coordinateId, setCoordinateId] = useState<number | null>(null);
-  const {
-    // panorama,
-    init: initPanorama,
-    update: updatePanorama,
-  } = useGoogleMapsPanorama();
 
-  const {
-    // map,
-    init: initMap,
-    userMarker,
-  } = useGoogleMapsMap();
+  const { userMarker, render, updateExactMarker } = useGameInterface();
 
   const startGame = async () => {
-    await initPanorama();
-    await initMap();
+    const randomCoordinates = await getRandomCoordinates();
+    await render(
+      {
+        lat: randomCoordinates.lat,
+        lng: randomCoordinates.lng,
+      },
+      {
+        heading: randomCoordinates.heading,
+        pitch: randomCoordinates.pitch,
+      }
+    );
+
+    setCoordinateId(randomCoordinates.id);
   };
 
   const submitGuessAndDisplayResult = async () => {
@@ -42,39 +43,23 @@ export default function AppProvider({ children }: ProviderProps) {
         ? userMarker.position.lng
         : userMarker.position.lng();
 
-    const { distanceInKm, score } =
-      await submitGuess(coordinateId, lat, lng);
+    const { exactLocation, distanceInKm, score } = await submitGuess(
+      coordinateId,
+      lat,
+      lng
+    );
 
-    console.log("Distância: ", distanceInKm);
-    console.log("Score: ", score);
-  };
+    updateExactMarker(exactLocation.lat, exactLocation.lng);
 
-  const goToNextRound = async () => {
-    try {
-      const { lat, lng, heading, pitch, id } = await getRandomCoordinates();
-      setCoordinateId(id);
-
-      updatePanorama({
-        position: {
-          lat,
-          lng,
-        },
-        pov: {
-          heading,
-          pitch,
-        },
-      });
-    } catch (error: unknown) {
-      console.log("Ocorreu um erro ao atualizar coordenadas.", error);
-    }
+    console.log("DISTANCIA EM KM: ", distanceInKm);
+    console.log("SCORE: ", score);
   };
 
   return (
     <AppContext.Provider
       value={{
         startGame,
-        goToNextRound,
-        submitGuessAndDisplayResult
+        submitGuessAndDisplayResult,
       }}
     >
       {children}
