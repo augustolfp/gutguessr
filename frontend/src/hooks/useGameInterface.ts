@@ -45,6 +45,19 @@ export default function useGameInterface() {
     markerFunctions.updateVisibility(exactMarker, map, false);
   };
 
+  const displayResultOnMap = async () => {
+    if (!exactMarker || !map || !userMarker?.position || !exactMarker.position) {
+      return;
+    }
+    markerFunctions.updateVisibility(exactMarker, map, true);
+
+    mapFunctions.traceDistanceLine(
+      map,
+      userMarker.position,
+      exactMarker.position
+    );
+  };
+
   const updateExactMarker = (lat: number, lng: number, isVisible: boolean) => {
     if (!exactMarker) {
       return;
@@ -70,5 +83,6 @@ export default function useGameInterface() {
     render,
     refresh,
     updateExactMarker,
+    displayResultOnMap
   };
 }

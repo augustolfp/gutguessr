@@ -11,8 +11,8 @@ const init = async () => {
 
 const traceDistanceLine = (
   map: google.maps.Map,
-  positionA: google.maps.LatLngLiteral,
-  positionB: google.maps.LatLngLiteral
+  positionA: google.maps.LatLngLiteral | google.maps.LatLng | google.maps.LatLngAltitudeLiteral,
+  positionB: google.maps.LatLngLiteral | google.maps.LatLng | google.maps.LatLngAltitudeLiteral
 ) => {
   const distanceLine = new google.maps.Polyline({
     path: [positionA, positionB],
@@ -27,8 +27,8 @@ const traceDistanceLine = (
 
 const adjustZoomToFitPoints = async (
   map: google.maps.Map,
-  positionA: google.maps.LatLngLiteral,
-  positionB: google.maps.LatLngLiteral
+  positionA: google.maps.LatLngLiteral | google.maps.LatLng | google.maps.LatLngAltitudeLiteral,
+  positionB: google.maps.LatLngLiteral | google.maps.LatLng | google.maps.LatLngAltitudeLiteral
 ) => {
   const bounds = new google.maps.LatLngBounds();
   bounds.extend(positionA);
