@@ -3,13 +3,13 @@ import "./defaults";
 const init = async (map: google.maps.Map, isInteractive: boolean) => {
   const newMarker = new google.maps.marker.AdvancedMarkerElement({
     position: null,
-    map,
   });
 
   if (isInteractive) {
     map.addListener("click", (mapsMouseEvent: google.maps.MapMouseEvent) => {
       if (mapsMouseEvent.latLng) {
         const { lat, lng } = mapsMouseEvent.latLng;
+        newMarker.map = map;
         newMarker.position = { lat: lat(), lng: lng() };
       }
     });
