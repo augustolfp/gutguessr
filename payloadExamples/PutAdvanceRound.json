@@ -1,0 +1,218 @@
+{
+    "snapshot": {
+        "quizId": "70b1e366-c0cb-49c8-bf0d-3d618bafdc02",
+        "currentRound": 2,
+        "rounds": [
+            {
+                "blueprintRoundId": "6dfd90a9-0bf3-4531-8cfa-0028da2a5da7",
+                "roundNumber": 1,
+                "question": {
+                    "type": "Panorama",
+                    "panoramaQuestionPayload": {
+                        "panorama": {
+                            "heading": 50.23711395263672,
+                            "pitch": -2.1418516635894775,
+                            "zoom": 0,
+                            "panoId": "kmpl5c-ZCMtzkJtraOdV7A",
+                            "countryCode": null,
+                            "stateCode": null,
+                            "lat": 46.751665227806754,
+                            "lng": -71.23259784051956
+                        },
+                        "movementOptions": {
+                            "forbidMoving": false,
+                            "forbidZooming": false,
+                            "forbidRotating": false
+                        },
+                        "mapBounds": {
+                            "min": {
+                                "lat": 90,
+                                "lng": 180
+                            },
+                            "max": {
+                                "lat": -90,
+                                "lng": -180
+                            }
+                        },
+                        "context": null
+                    },
+                    "quizQuestionPayload": null,
+                    "staticContentPayload": null,
+                    "customPanoramaPayload": null,
+                    "fullScreenImageQuestionPayload": null
+                },
+                "answer": {
+                    "type": "Coordinate",
+                    "coordinateAnswerPayload": {
+                        "coordinate": {
+                            "lat": 46.751665227806754,
+                            "lng": -71.23259784051956
+                        }
+                    },
+                    "countryAnswerPayload": null,
+                    "singleChoicePayload": null,
+                    "singleChoiceCoordinatePayload": null,
+                    "orderingAnswerPayload": null,
+                    "rangeAnswerPayload": null,
+                    "multipleAnswerAnswerPayload": null
+                },
+                "isFinished": true,
+                "roundTime": 120,
+                "maxRoundScore": 5000,
+                "startAt": "2025-12-25T19:42:09.810394+00:00",
+                "endAt": "2025-12-25T19:44:09.810394+00:00",
+                "isInteractive": true
+            },
+            {
+                "blueprintRoundId": "e7c410fd-b2c0-4eef-ae36-ef5e26d30e3f",
+                "roundNumber": 2,
+                "question": {
+                    "type": "Panorama",
+                    "panoramaQuestionPayload": {
+                        "panorama": {
+                            "heading": 0,
+                            "pitch": 0,
+                            "zoom": 0,
+                            "panoId": "I6HkNsuEo2Hqd7PbYnN71w",
+                            "countryCode": "hu",
+                            "stateCode": null,
+                            "lat": 47.50345993041992,
+                            "lng": 19.039438247680664
+                        },
+                        "movementOptions": {
+                            "forbidMoving": false,
+                            "forbidZooming": false,
+                            "forbidRotating": false
+                        },
+                        "mapBounds": {
+                            "min": {
+                                "lat": 90,
+                                "lng": 180
+                            },
+                            "max": {
+                                "lat": -90,
+                                "lng": -180
+                            }
+                        },
+                        "context": null
+                    },
+                    "quizQuestionPayload": null,
+                    "staticContentPayload": null,
+                    "customPanoramaPayload": null,
+                    "fullScreenImageQuestionPayload": null
+                },
+                "answer": {
+                    "type": "Coordinate",
+                    "coordinateAnswerPayload": {
+                        "coordinate": {
+                            "lat": 47.50345993041992,
+                            "lng": 19.039438247680664
+                        }
+                    },
+                    "countryAnswerPayload": null,
+                    "singleChoicePayload": null,
+                    "singleChoiceCoordinatePayload": null,
+                    "orderingAnswerPayload": null,
+                    "rangeAnswerPayload": null,
+                    "multipleAnswerAnswerPayload": null
+                },
+                "isFinished": false,
+                "roundTime": 120,
+                "maxRoundScore": 5000,
+                "startAt": "2025-12-25T19:46:06.3395515+00:00",
+                "endAt": "2025-12-25T19:48:06.3395515+00:00",
+                "isInteractive": true
+            },
+            {
+                "blueprintRoundId": "d625db08-0f03-4307-8c54-e4bd21f39486",
+                "roundNumber": 3,
+                "question": {
+                    "type": "Panorama",
+                    "panoramaQuestionPayload": {
+                        "panorama": {
+                            "heading": 0,
+                            "pitch": 0,
+                            "zoom": 0,
+                            "panoId": "fPzqXrN-8a6SXw-6M_49Ew",
+                            "countryCode": "cl",
+                            "stateCode": null,
+                            "lat": -33.43623733520508,
+                            "lng": -70.64218139648438
+                        },
+                        "movementOptions": {
+                            "forbidMoving": false,
+                            "forbidZooming": false,
+                            "forbidRotating": false
+                        },
+                        "mapBounds": {
+                            "min": {
+                                "lat": 90,
+                                "lng": 180
+                            },
+                            "max": {
+                                "lat": -90,
+                                "lng": -180
+                            }
+                        },
+                        "context": null
+                    },
+                    "quizQuestionPayload": null,
+                    "staticContentPayload": null,
+                    "customPanoramaPayload": null,
+                    "fullScreenImageQuestionPayload": null
+                },
+                "answer": {
+                    "type": "Coordinate",
+                    "coordinateAnswerPayload": {
+                        "coordinate": {
+                            "lat": -33.43623733520508,
+                            "lng": -70.64218139648438
+                        }
+                    },
+                    "countryAnswerPayload": null,
+                    "singleChoicePayload": null,
+                    "singleChoiceCoordinatePayload": null,
+                    "orderingAnswerPayload": null,
+                    "rangeAnswerPayload": null,
+                    "multipleAnswerAnswerPayload": null
+                },
+                "isFinished": false,
+                "roundTime": 120,
+                "maxRoundScore": 5000,
+                "startAt": null,
+                "endAt": null,
+                "isInteractive": true
+            }
+        ],
+        "guesses": [
+            {
+                "playerId": "5f04a28a5ef95d57e8fca118",
+                "quizId": "70b1e366-c0cb-49c8-bf0d-3d618bafdc02",
+                "distance": 8277670.452082696,
+                "time": 0,
+                "score": 80,
+                "wasCorrect": false,
+                "wasCorrectCountry": false,
+                "wasCorrectContinent": false,
+                "roundNumber": 1,
+                "lat": 8.597316223609338,
+                "lng": 5.166320759936642,
+                "countryCode": null,
+                "singleChoiceAlternative": 0,
+                "singleChoiceCoordinateAlternative": 0,
+                "orderingItems": null,
+                "rangeValue": null,
+                "multipleAnswerChoices": null,
+                "timeout": false
+            }
+        ],
+        "createdAt": "2025-12-25T19:42:09.8103961+00:00",
+        "isFinished": false,
+        "totalScore": 80,
+        "maxScore": 15000,
+        "totalRounds": 3,
+        "startOptions": null
+    },
+    "success": true,
+    "fault": null
+}
