@@ -13,31 +13,6 @@ datasource db {
   provider = "postgresql"
 }
 
-model QuizBlueprint {
-  id              Int              @id @default(autoincrement())
-  title           String
-  description     String
-  created_at      DateTime         @default(now())
-  updated_at      DateTime         @updatedAt
-  roundBlueprints RoundBlueprint[]
-  rounds          Round[]
-}
-
-model RoundBlueprint {
-  id                Int           @id @default(autoincrement())
-  quiz_blueprint    QuizBlueprint @relation(fields: [quiz_blueprint_id], references: [id])
-  quiz_blueprint_id Int
-  round_number      Int
-  max_guess_time    Int?
-  max_guess_score   Int
-  lat               Float
-  lng               Float
-  heading           Int
-  pitch             Int
-  created_at        DateTime      @default(now())
-  updated_at        DateTime      @updatedAt
-}
-
 model Quiz {
   id          Int      @id @default(autoincrement())
   title       String
@@ -53,14 +28,12 @@ model Round {
   quiz            Quiz           @relation(fields: [quiz_id], references: [id])
   quiz_id         Int
   round_number    Int
-  max_guess_time  Int?
-  max_guess_score Int
+  max_round_time  Int?
+  max_round_score Int
   lat             Float
   lng             Float
   heading         Int
   pitch           Int
   created_at      DateTime       @default(now())
   updated_at      DateTime       @updatedAt
-  quizBlueprint   QuizBlueprint? @relation(fields: [quizBlueprintId], references: [id])
-  quizBlueprintId Int?
 }
