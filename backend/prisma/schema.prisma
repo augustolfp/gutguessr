@@ -24,8 +24,8 @@ model Quiz {
 }
 
 model Round {
-  id              Int            @id @default(autoincrement())
-  quiz            Quiz           @relation(fields: [quiz_id], references: [id])
+  id              Int      @id @default(autoincrement())
+  quiz            Quiz     @relation(fields: [quiz_id], references: [id])
   quiz_id         Int
   round_number    Int
   max_round_time  Int?
@@ -34,6 +34,20 @@ model Round {
   lng             Float
   heading         Int
   pitch           Int
-  created_at      DateTime       @default(now())
-  updated_at      DateTime       @updatedAt
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  guess           Guess?
+}
+
+model Guess {
+  id         Int      @id @default(autoincrement())
+  round      Round    @relation(fields: [round_id], references: [id])
+  round_id   Int      @unique
+  distance   Int?
+  score      Int
+  lat        Float?
+  lng        Float?
+  timeout    Boolean
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
