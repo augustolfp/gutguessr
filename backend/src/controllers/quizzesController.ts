@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import * as blueprintsRepository from "../repositories/blueprintsRepository";
+import * as quizzesRepository from "../repositories/quizzesRepository";
 
-export async function getBrumadoQuizBlueprint(req: Request, res: Response) {
-  const blueprint = blueprintsRepository.getBrumadoQuizBlueprint();
+export async function createNewQuiz(req: Request, res: Response) {
+  const playerName: string = req.body.playerName;
+  const newQuiz = await quizzesRepository.createNewQuiz(playerName);
 
-  res.status(200).json(blueprint);
+  res.status(201).json(newQuiz);
   return;
 }

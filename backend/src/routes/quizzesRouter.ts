@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { getBrumadoQuizBlueprint } from "../controllers/quizzesController";
+import { createNewQuiz } from "../controllers/quizzesController";
 
 const quizzesRouter = Router();
 
-quizzesRouter.get("/quizzes/brumado-easy", getBrumadoQuizBlueprint);
+quizzesRouter.post("/quizzes/new", createNewQuiz);
 
 export default quizzesRouter;
