@@ -13,7 +13,7 @@ datasource db {
   provider = "postgresql"
 }
 
-model Quiz {
+model GameSession {
   id          Int      @id @default(autoincrement())
   title       String
   description String
@@ -24,9 +24,9 @@ model Quiz {
 }
 
 model Round {
-  id              Int      @id @default(autoincrement())
-  quiz            Quiz     @relation(fields: [quiz_id], references: [id])
-  quiz_id         Int
+  id              Int         @id @default(autoincrement())
+  game_session    GameSession @relation(fields: [game_session_id], references: [id])
+  game_session_id Int
   round_number    Int
   max_round_time  Int?
   max_round_score Int
@@ -34,8 +34,8 @@ model Round {
   lng             Float
   heading         Int
   pitch           Int
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
   guess           Guess?
 }
 
