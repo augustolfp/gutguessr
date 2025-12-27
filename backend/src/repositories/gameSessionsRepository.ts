@@ -1,7 +1,7 @@
 import { prisma } from "../../config/database.js";
 import * as blueprintsRepository from "./blueprintsRepository.js";
 
-export async function createNewQuiz(playerName: string) {
+export async function createNewGameSession(playerName: string) {
   const brumadoBlueprint = blueprintsRepository.getBrumadoQuizBlueprint();
 
   const roundsArray = brumadoBlueprint.rounds.map((round) => {
@@ -16,25 +16,29 @@ export async function createNewQuiz(playerName: string) {
     };
   });
 
-  const newQuiz = await prisma.quiz.create({
+  const newGameSession = await prisma.gameSession.create({
     data: {
       title: brumadoBlueprint.title,
       description: brumadoBlueprint.description,
-      username: playerName,
+      player_name: playerName,
       rounds: {
         create: roundsArray,
       },
     },
     include: {
-      rounds: true,
+      rounds: {
+        include: {
+          guess: true,
+        },
+      },
     },
   });
 
-  return newQuiz;
+  return newGameSession;
 }
 
-export async function findQuizById(id: number) {
-  return await prisma.quiz.findUnique({
+export async function findGameSessionById(id: number) {
+  return await prisma.gameSession.findUnique({
     where: {
       id,
     },

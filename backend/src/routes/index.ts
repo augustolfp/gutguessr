@@ -1,11 +1,11 @@
 import { Router } from "express";
 
-import quizzesRouter from "./quizzesRouter";
+import gameSessionsRouter from "./gameSessionsRouter";
 import guessesRouter from "./guessesRouter";
 
 const router = Router();
 
-router.use(quizzesRouter);
+router.use(gameSessionsRouter);
 router.use(guessesRouter);
 
 export default router;
