@@ -3,7 +3,7 @@ import { createNewGameSession, getGameSession } from "../controllers/gameSession
 
 const gameSessionsRouter = Router();
 
-gameSessionsRouter.post("/game-session/new", createNewGameSession);
-gameSessionsRouter.get("/game-session/:id", getGameSession);
+gameSessionsRouter.post("/game-sessions", createNewGameSession);
+gameSessionsRouter.get("/game-sessions/:id", getGameSession);
 
 export default gameSessionsRouter;
