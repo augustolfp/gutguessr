@@ -47,7 +47,7 @@ model Guess {
   score      Int
   lat        Float?
   lng        Float?
-  timeout    Boolean
+  timeout    Boolean?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
