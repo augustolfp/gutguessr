@@ -32,3 +32,18 @@ export async function createNewQuiz(playerName: string) {
 
   return newQuiz;
 }
+
+export async function findQuizById(id: number) {
+  return await prisma.quiz.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      rounds: {
+        include: {
+          guess: true,
+        },
+      },
+    },
+  });
+}

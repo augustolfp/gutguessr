@@ -8,3 +8,11 @@ export async function createNewQuiz(req: Request, res: Response) {
   res.status(201).json(newQuiz);
   return;
 }
+
+export async function getQuiz(req: Request, res: Response) {
+  const quizId = req.params.id;
+
+  const quiz = await quizzesRepository.findQuizById(parseInt(quizId));
+  res.status(200).json(quiz);
+  return;
+}
