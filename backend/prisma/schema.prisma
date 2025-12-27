@@ -28,8 +28,6 @@ model Round {
   game_session    GameSession @relation(fields: [game_session_id], references: [id])
   game_session_id Int
   round_number    Int
-  max_round_time  Int?
-  max_round_score Int
   lat             Float
   lng             Float
   heading         Int

@@ -7,8 +7,6 @@ export async function createNewGameSession(playerName: string) {
   const roundsArray = brumadoBlueprint.rounds.map((round) => {
     return {
       round_number: round.roundNumber,
-      max_round_time: round.maxRoundTime,
-      max_round_score: round.maxRoundScore,
       lat: round.coordinates.lat,
       lng: round.coordinates.lng,
       heading: round.coordinates.heading,
