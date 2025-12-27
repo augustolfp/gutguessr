@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import { ApiError } from "../helpers/api-errors";
-const brumadoEasy = await fs.readFile("./quizzes/brumadoEasy.json");
+const brumadoEasy = await fs.readFile("./blueprints/brumadoEasy.json");
 const parsedList = JSON.parse(brumadoEasy.toString());
 
 type RoundBlueprint = {
@@ -31,10 +31,8 @@ function isQuizBlueprint(x: any): x is QuizBlueprint {
 }
 
 export function getBrumadoQuizBlueprint() {
-  const isBlueprint = isQuizBlueprint(parsedList);
-
   if (!isQuizBlueprint(parsedList)) {
-    throw new ApiError("Brumado Quiz não utilizado.", 500);
+    throw new ApiError("Brumado Quiz não apresenta formato correto.", 500);
   }
   return parsedList;
 }
