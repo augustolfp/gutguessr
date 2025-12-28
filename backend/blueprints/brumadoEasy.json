@@ -1,13 +1,8 @@
 {
   "title": "Brumado",
-  "level": "EASY",
   "description": "Dispute com os seus conterrâneos quem conhece mais sobre a capital do minério.",
   "rounds": [
     {
-      "roundNumber": 0,
-      "comment": "",
-      "maxRoundTime": 120,
-      "maxRoundScore": 5000,
       "coordinates": {
         "lat": -14.214692837709247,
         "lng": -41.678991219098975,
@@ -16,10 +11,6 @@
       }
     },
     {
-      "roundNumber": 1,
-      "comment": "",
-      "maxRoundTime": 120,
-      "maxRoundScore": 5000,
       "coordinates": {
         "lat": -14.206744590498404,
         "lng": -41.68398398555305,
@@ -28,10 +19,6 @@
       }
     },
     {
-      "roundNumber": 2,
-      "comment": "",
-      "maxRoundTime": 120,
-      "maxRoundScore": 5000,
       "coordinates": {
         "lat": -14.206797624712486,
         "lng": -41.68441016043183,
@@ -40,10 +27,6 @@
       }
     },
     {
-      "roundNumber": 3,
-      "comment": "",
-      "maxRoundTime": 120,
-      "maxRoundScore": 3000,
       "coordinates": {
         "lat": -14.189977643752696,
         "lng": -41.67310053550365,
@@ -52,10 +35,6 @@
       }
     },
     {
-      "roundNumber": 4,
-      "comment": "",
-      "maxRoundTime": 120,
-      "maxRoundScore": 7000,
       "coordinates": {
         "lat": -14.196204903032472,
         "lng": -41.655382151403586,

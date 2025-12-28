@@ -4,15 +4,17 @@ import * as blueprintsRepository from "./blueprintsRepository.js";
 export async function createNewGameSession(playerName: string) {
   const brumadoBlueprint = blueprintsRepository.getBrumadoQuizBlueprint();
 
-  const roundsArray = brumadoBlueprint.rounds.map((round) => {
-    return {
-      round_number: round.roundNumber,
-      lat: round.coordinates.lat,
-      lng: round.coordinates.lng,
-      heading: round.coordinates.heading,
-      pitch: round.coordinates.pitch,
-    };
-  });
+  const formattedSessionRounds = brumadoBlueprint.rounds.map(
+    ({ coordinates }, index) => {
+      return {
+        round_number: index,
+        lat: coordinates.lat,
+        lng: coordinates.lng,
+        heading: coordinates.heading,
+        pitch: coordinates.pitch,
+      };
+    }
+  );
 
   const newGameSession = await prisma.gameSession.create({
     data: {
@@ -20,7 +22,7 @@ export async function createNewGameSession(playerName: string) {
       description: brumadoBlueprint.description,
       player_name: playerName,
       rounds: {
-        create: roundsArray,
+        create: formattedSessionRounds,
       },
     },
     include: {
