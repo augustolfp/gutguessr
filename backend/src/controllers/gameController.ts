@@ -48,7 +48,7 @@ export async function computeRoundTimeout(req: Request, res: Response) {
   const gameSessionId = parseInt(req.params.gameSessionId);
   const roundNumber = parseInt(req.params.roundNumber);
 
-  const result = guessesService.computeRoundTimeout(gameSessionId, roundNumber);
+  const result = await guessesService.computeRoundTimeout(gameSessionId, roundNumber);
 
   res.status(201).json(result);
   return;
