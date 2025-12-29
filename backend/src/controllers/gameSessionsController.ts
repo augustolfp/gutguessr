@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import * as gameSessionsService from "../services/gameSessionsService";
 import * as gameSessionsRepository from "../repositories/gameSessionsRepository";
 
 export async function createNewGameSession(req: Request, res: Response) {
@@ -11,9 +12,9 @@ export async function createNewGameSession(req: Request, res: Response) {
   return;
 }
 
-export async function getGameSession(req: Request, res: Response) {
+export async function getGameSessionDetails(req: Request, res: Response) {
   const gameSessionId = req.params.id;
-  const gameSession = await gameSessionsRepository.findGameSessionById(
+  const gameSession = await gameSessionsService.getGameSessionDetails(
     parseInt(gameSessionId)
   );
 

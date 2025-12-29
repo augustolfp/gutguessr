@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { createNewGameSession, getGameSession } from "../controllers/gameSessionsController";
+import {
+  createNewGameSession,
+  getGameSessionDetails,
+} from "../controllers/gameSessionsController";
 
 const gameSessionsRouter = Router();
 
 gameSessionsRouter.post("/game-sessions", createNewGameSession);
-gameSessionsRouter.get("/game-sessions/:id", getGameSession);
+gameSessionsRouter.get("/game-sessions/:id", getGameSessionDetails);
 
 export default gameSessionsRouter;
