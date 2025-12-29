@@ -21,6 +21,7 @@ export interface Round {
   lng: number;
   heading: number;
   pitch: number;
+  guess: Guess | null;
 }
 
 export interface GameSession {
