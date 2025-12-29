@@ -41,14 +41,10 @@ function computeSessionDetails(rounds: RoundWithGuess[]) {
     return acc + currentScore;
   }, 0);
 
-  let currentRound: number = 0;
-
-  if (nonPlayedRounds.length !== 0) {
-    currentRound = nonPlayedRounds[0].round_number;
-  }
-  if (nonPlayedRounds.length === 0) {
-    currentRound = rounds.at(-1)!.round_number;
-  }
+  const currentRound =
+    nonPlayedRounds.length !== 0
+      ? nonPlayedRounds[0].round_number
+      : rounds.at(-1)!.round_number;
 
   return {
     currentRound,
