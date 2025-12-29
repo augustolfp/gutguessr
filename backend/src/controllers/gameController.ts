@@ -22,34 +22,9 @@ export async function getGameSessionDetails(req: Request, res: Response) {
   return;
 }
 
-// export async function declareRoundTimeout(req: Request, res: Response) {
-//   const roundId = req.body.roundId;
-//   const gameSessionId = req.body.gameSessionId;
-
-//   await guessesService.declareRoundTimeout(roundId);
-//   const updatedGameSession = await gameSessionsService.getGameSessionDetails(
-//     gameSessionId
-//   );
-
-//   res.status(201).json(updatedGameSession);
-//   return;
-// }
-
-// export async function savePlayerRoundGuess(req: Request, res: Response) {
-//   const { roundId, gameSessionId, lat, lng } = req.body;
-
-//   await guessesService.savePlayerRoundGuess(roundId, lat, lng);
-//   const updatedGameSession = await gameSessionsService.getGameSessionDetails(
-//     gameSessionId
-//   );
-
-//   res.status(201).json(updatedGameSession);
-//   return;
-// }
-
 export async function computeRoundGuess(req: Request, res: Response) {
-  const gameSessionId = req.params.gameSessionId;
-  const roundNumber = req.params.roundNumber;
+  const gameSessionId = parseInt(req.params.gameSessionId);
+  const roundNumber = parseInt(req.params.roundNumber);
   const {
     lat,
     lng,
@@ -58,18 +33,23 @@ export async function computeRoundGuess(req: Request, res: Response) {
     lng: number;
   } = req.body;
 
-  // TO - DO: computar o palpite passando o round number
+  const result = await guessesService.computeRoundGuess(
+    gameSessionId,
+    roundNumber,
+    lat,
+    lng
+  );
 
-  res.status(201);
+  res.status(201).json(result);
   return;
 }
 
 export async function computeRoundTimeout(req: Request, res: Response) {
-  const gameSessionId = req.params.gameSessionId;
-  const roundNumber = req.params.roundNumber;
+  const gameSessionId = parseInt(req.params.gameSessionId);
+  const roundNumber = parseInt(req.params.roundNumber);
 
-  // TO - DO: computar o timeout passando o round number
+  const result = guessesService.computeRoundTimeout(gameSessionId, roundNumber);
 
-  res.status(201);
+  res.status(201).json(result);
   return;
 }
