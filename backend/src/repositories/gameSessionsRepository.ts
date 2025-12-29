@@ -7,7 +7,7 @@ export async function createNewGameSession(playerName: string) {
   const formattedSessionRounds = brumadoBlueprint.rounds.map(
     ({ coordinates }, index) => {
       return {
-        round_number: index,
+        round_number: index + 1,
         lat: coordinates.lat,
         lng: coordinates.lng,
         heading: coordinates.heading,
