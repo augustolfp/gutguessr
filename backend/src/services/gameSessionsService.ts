@@ -18,6 +18,12 @@ export async function getGameSessionDetails(id: number) {
 
   const totalRounds = gameSession.rounds.length;
   const isFinished = playedRounds.length === totalRounds;
+  const maxScore = 5000 * totalRounds;
+
+  const totalScore = playedRounds.reduce((acc, curr) => {
+    const currentScore = curr.guess?.score || 0;
+    return acc + currentScore;
+  }, 0);
 
   let currentRound: number = 0;
 
@@ -33,5 +39,7 @@ export async function getGameSessionDetails(id: number) {
     currentRound,
     totalRounds,
     isFinished,
+    totalScore,
+    maxScore,
   };
 }
