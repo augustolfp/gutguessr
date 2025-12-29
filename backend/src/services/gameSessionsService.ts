@@ -9,6 +9,19 @@ type RoundWithGuess = RoundGetPayload<{
   };
 }>;
 
+export async function createNewGameSession(playerName: string) {
+  const gameSession = await gameSessionsRepository.createNewGameSession(
+    playerName
+  );
+
+  const sessionDetails = computeSessionDetails(gameSession.rounds);
+
+  return {
+    ...gameSession,
+    ...sessionDetails,
+  };
+}
+
 export async function getGameSessionDetails(id: number) {
   const gameSession = await gameSessionsRepository.findGameSessionById(id);
 

@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import * as gameSessionsService from "../services/gameSessionsService";
-import * as gameSessionsRepository from "../repositories/gameSessionsRepository";
 
 export async function createNewGameSession(req: Request, res: Response) {
   const playerName: string = req.body.playerName;
-  const newGameSession = await gameSessionsRepository.createNewGameSession(
+  const newGameSession = await gameSessionsService.createNewGameSession(
     playerName
   );
 
