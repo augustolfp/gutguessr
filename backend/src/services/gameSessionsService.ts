@@ -1,6 +1,13 @@
 import * as gameSessionsRepository from "../repositories/gameSessionsRepository.js";
 
 import { ApiError } from "../helpers/api-errors";
+import { RoundGetPayload } from "../../generated/prisma/models.js";
+
+type RoundWithGuess = RoundGetPayload<{
+  include: {
+    guess: true;
+  };
+}>;
 
 export async function getGameSessionDetails(id: number) {
   const gameSession = await gameSessionsRepository.findGameSessionById(id);
@@ -13,10 +20,19 @@ export async function getGameSessionDetails(id: number) {
     throw new ApiError("GameSession apresenta formato inválido.", 500);
   }
 
-  const playedRounds = gameSession.rounds.filter((round) => round.guess);
-  const nonPlayedRounds = gameSession.rounds.filter((round) => !round.guess);
+  const sessionDetails = computeSessionDetails(gameSession.rounds);
 
-  const totalRounds = gameSession.rounds.length;
+  return {
+    ...gameSession,
+    ...sessionDetails,
+  };
+}
+
+function computeSessionDetails(rounds: RoundWithGuess[]) {
+  const playedRounds = rounds.filter((round) => round.guess);
+  const nonPlayedRounds = rounds.filter((round) => !round.guess);
+
+  const totalRounds = rounds.length;
   const isFinished = playedRounds.length === totalRounds;
   const maxScore = 5000 * totalRounds;
 
@@ -31,11 +47,10 @@ export async function getGameSessionDetails(id: number) {
     currentRound = nonPlayedRounds[0].round_number;
   }
   if (nonPlayedRounds.length === 0) {
-    currentRound = gameSession.rounds.at(-1)!.round_number;
+    currentRound = rounds.at(-1)!.round_number;
   }
 
   return {
-    ...gameSession,
     currentRound,
     totalRounds,
     isFinished,
