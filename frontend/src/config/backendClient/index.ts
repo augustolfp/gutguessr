@@ -33,4 +33,12 @@ const submitGuess = async (locationId: number, lat: number, lng: number) => {
   return result.data;
 };
 
-export { getRandomCoordinates, submitGuess };
+const createNewGameSession = async (playerName: string) => {
+  const result = await api.post("/game-sessions", {
+    playerName,
+  });
+
+  return result.data;
+};
+
+export { createNewGameSession, getRandomCoordinates, submitGuess };
