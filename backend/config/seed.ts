@@ -1,6 +1,6 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
-import { getLocationsList } from "./locationsParser";
+import getAllSeeds from "./seedFilesParser";
 
 const connectionString = `${process.env.DATABASE_URL}`;
 
@@ -8,20 +8,28 @@ const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const numberOfLocations = await prisma.location.count();
+  // Devo truncar as tabelas GameBlueprint e RoundBlueprint antes de executar as seeds?
 
-  if (numberOfLocations !== 0) {
-    console.info("Tabela Location já está populada. Seed não será executada.");
-  }
+  const gameBlueprintSeeds = await getAllSeeds();
 
-  if (numberOfLocations === 0) {
-    const locationsList = await getLocationsList();
+  for (const seed of gameBlueprintSeeds) {
+    const { rounds, ...rest } = seed;
 
-    await prisma.location.createMany({
-      data: locationsList,
+    const formatRounds = rounds.map((round, index) => {
+      return {
+        round_number: index + 1,
+        ...round,
+      };
     });
 
-    console.info("Tabela Location populada através de Seed.");
+    await prisma.gameBlueprint.create({
+      data: {
+        ...rest,
+        rounds: {
+          create: formatRounds,
+        },
+      },
+    });
   }
 }
 
