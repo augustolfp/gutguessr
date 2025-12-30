@@ -49,3 +49,24 @@ model Guess {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
+
+model GameBlueprint {
+  id          Int              @id @default(autoincrement())
+  title       String
+  description String
+  rounds      RoundBlueprint[]
+  created_at  DateTime         @default(now())
+  updated_at  DateTime         @updatedAt
+}
+
+model RoundBlueprint {
+  id                Int           @id @default(autoincrement())
+  game_blueprint    GameBlueprint @relation(fields: [game_blueprint_id], references: [id])
+  game_blueprint_id Int
+  lat               Float
+  lng               Float
+  heading           Int
+  pitch             Int
+  created_at        DateTime      @default(now())
+  updated_at        DateTime      @updatedAt
+}
