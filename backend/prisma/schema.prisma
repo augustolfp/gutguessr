@@ -61,6 +61,7 @@ model GameBlueprint {
 
 model RoundBlueprint {
   id                Int           @id @default(autoincrement())
+  round_number      Int
   game_blueprint    GameBlueprint @relation(fields: [game_blueprint_id], references: [id])
   game_blueprint_id Int
   lat               Float
