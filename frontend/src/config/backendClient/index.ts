@@ -41,4 +41,4 @@ const createNewGameSession = async (playerName: string) => {
   return result.data;
 };
 
-export { createNewGameSession, getRandomCoordinates, submitGuess };
+export { createNewGameSession, getRandomCoordinates, submitGuess, api };
